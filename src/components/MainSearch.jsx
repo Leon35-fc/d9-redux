@@ -5,6 +5,8 @@ import Job from "./Job";
 const MainSearch = () => {
   const [query, setQuery] = useState("");
   const [jobs, setJobs] = useState([]);
+  const [favourite, setFavourite] = useState(false)
+
 
   const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
 
@@ -28,6 +30,8 @@ const MainSearch = () => {
     }
   };
 
+  const addFavourite = (favourite) => setFavourite(favourite)
+  
   return (
     <Container>
       <Row>
@@ -41,7 +45,7 @@ const MainSearch = () => {
         </Col>
         <Col xs={10} className="mx-auto mb-5">
           {jobs.map(jobData => (
-            <Job key={jobData._id} data={jobData} />
+            <Job key={jobData._id} data={jobData} addFavourite={addFavourite} favourite={favourite}/>
           ))}
         </Col>
       </Row>
